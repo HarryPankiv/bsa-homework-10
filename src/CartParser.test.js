@@ -1,4 +1,5 @@
 import CartParser from './CartParser';
+import { readFileSync } from 'fs';
 
 let parse, validate, content;
 beforeEach(() => {
@@ -184,8 +185,9 @@ describe("CartParser validation method tests", () => {
 
 describe("CartParser - integration tests", () => {
     // Add your integration tests here.
-    it("should parse sample csv file and call defined functions", () => {
+    it("Should parse sample csv file and call defined functions", () => {
         let path = "samples/cart.csv";
+        let parser = new CartParser();
 
         parser.readFile = jest.fn(()=>{
             return readFileSync(path, 'utf-8', 'r');
